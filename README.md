@@ -3,20 +3,35 @@
 > Publish to AMQP using a writable stream.
 
 ## Purpose
-- What problem does this module solve? At least a few sentences.
-PLEASE_FILL_IN_HERE
+
+Provides a writable node.js stream that publishes to AMQP.
 
 ## Usage
 
 ```js
-// Several examples of usage.
-// Usually copying and pasting code from the tests and making the code standalone suffices.
-// PLEASE_FILL_IN_HERE
+const conn = require('amqplib').connect(process.env.AMQP_URL);
+const channel = conn.createChannel();;
+const ws = require('..')(channel, 'exchange', 'routingKey', { stream: { objectMode: true } });
+const payload = { hi: 'there' };
+ws.write(payload);
+// payload should have been published to given exchange and routing key.
 ```
 
 ## API
 
-PLEASE_FILL_IN_HERE
+<a name="module_amqp-write-stream"></a>
+
+## amqp-write-stream
+- opts.amqp - Options passed to amqplib's publish() method.
+- opts.stream - Options passed to the Writable stream.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| channel | <code>Channel</code> | The amqplib channel to publish on. |
+| exchange | <code>string</code> | The exchange to publish on. |
+| routingKey | <code>string</code> | The routing key to publish on. |
+| opts | <code>object</code> |  |
 
 Note: To regenerate this section from the jsdoc run `npm run docs` and paste
 the output above.

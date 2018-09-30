@@ -1,5 +1,6 @@
 const { Writable } = require('stream');
 /**
+ * @module amqp-write-stream
  * @param {Channel} channel - The amqplib channel to publish on.
  * @param {string} exchange - The exchange to publish on.
  * @param {string} routingKey - The routing key to publish on.
